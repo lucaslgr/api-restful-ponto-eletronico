@@ -2,11 +2,16 @@
 
 namespace Models;
 
-use Core\Model;
+use \Core\Model;
 
 class Members extends Model
 {
     protected int $id_user;
+    //Retorna o id do membro logado
+    public function getId()
+    {
+        return $this->id_user;
+    }
 
     //Insere um novo membro no banco de dados
     public function add(string $nome, string $email, string $senha, int $id_cargo, int $id_departamento)
@@ -62,10 +67,22 @@ class Members extends Model
         return ($sql->rowCount() > 0)?true:false;
     }
 
-    //Retorna o id do membro logado
-    public function getId()
+    //Checa se o id do membro informado existe no BD
+    public function checkIdMember(int $id_member)
     {
-        return $this->id_user;
+        $sql = $this->pdo->prepare("SELECT * FROM membros WHERE id = ?");
+        $sql->execute(array($id_member));
+
+        return($sql->rowCount() > 0)?(true):(false);
+    }
+
+    //Checa se a tag respectiva ao UID informado existe
+    public function checkTagUID(string $uid)
+    {
+        $sql = $this->pdo->prepare("SELECT id_membro FROM tags_cadastradas WHERE uid = ?");
+        $sql->execute(array($uid));
+
+        return ($sql->rowCount() > 0)?(true):(false);
     }
 
     //Retorna as informações do do membro do respectivo id
@@ -147,5 +164,52 @@ class Members extends Model
         }
 
         return $response;
+    }
+
+    //Edita as informações do usuário respectivo ao id informado
+    public function editInfo(int $id_member, array $update_data = array())
+    {
+        if (!$this->checkIdMember($id_member))
+            return 'Id do membro é inválido';
+
+        $fields = array_keys($update_data);
+        $values = array_values($update_data);
+
+        foreach ($fields as $key => $field)
+            $fields[$key] = $field .= ' = ?';
+
+        $values[] = $id_member;
+        $sql = $this->pdo->prepare(
+            "UPDATE membros
+            SET ".implode(', ', $fields)." WHERE id = ?"
+        );
+
+        $status_query = $sql->execute($values);
+
+        return ($status_query)?(''):('Ocorreu um erro na query');
+    }
+
+    //Deleta o membro do respectivo ID
+    public function delete(int $id_member)
+    {
+        $sql = $this->pdo->prepare("DELETE FROM membros WHERE id = ?");
+        $status_query = $sql->execute(array($id_member));
+
+        return ($status_query)?(''):('Ocorreu um erro na query');
+    }
+
+    //Registra um acesso do membro
+    public function accessRegister(string $uid)
+    {
+        $sql = $this->pdo->prepare(
+            "INSERT INTO acessos(uid, horario, id_status) VALUES(?, NOW(),  ?)"
+        );
+
+        $status_query = $sql->execute(array(
+            $uid,
+            1
+        ));
+
+        return ($status_query)?(''):('Ocorreu um erro na query');
     }
 } 

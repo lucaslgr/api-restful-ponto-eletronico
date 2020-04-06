@@ -9,11 +9,7 @@
         $config['dbpass'] = '';
     }
     else { //Se não => ENVIRONMENT = 'production'
-        define('BASE_URL', 'www.meusite.com.br');
-        $config['dbname'] = 'estrutura_mvc';
-        $config['host'] = '127.0.0.1';
-        $config['dbuser'] = 'root';
-        $config['dbpass'] = '';
+        
     }
 
     global $db;

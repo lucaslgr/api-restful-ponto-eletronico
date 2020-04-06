@@ -2,8 +2,8 @@
 
 namespace Controllers;
 
-use Core\Controller;
-use Models\Members;
+use \Core\Controller;
+use \Models\Members;
 
 class MembersController extends Controller
 {
@@ -103,8 +103,6 @@ class MembersController extends Controller
             $response['error'] = 'Método '.$method.' é inválido para essa requisição';
 
         $this->returnJson($response);
-
-        $this->returnJson($response);
     }
 
     /**
@@ -113,7 +111,6 @@ class MembersController extends Controller
      * - /members/{id}         (PUT)       = (GP) editar membro {id}
      * - /members/{id}         (DELETE)    = (GP) deletar membro {id}
     */
-
     public function view(int $id_member)
     {
         $response = array(
@@ -121,7 +118,7 @@ class MembersController extends Controller
         );
 
         $method = $this->getMethod();
-        //$data = $this->getRequestData();
+        $data = $this->getRequestData();
 
         $id_member = intval($id_member);
         if (!empty($id_member)) {
@@ -139,9 +136,14 @@ class MembersController extends Controller
                     break;
                     
                 case 'PUT':
+                    if (count($data) > 0)
+                        $response['error'] = $members->editInfo($id_member, $data);
+                    else
+                        $response['error'] = 'Nenhum dado foi enviado';
                     break;
     
                 case 'DELETE':
+                        $response['error'] = $members->delete($id_member);
                     break;
     
                 default:
