@@ -9,7 +9,11 @@
         $config['dbpass'] = '';
     }
     else { //Se não => ENVIRONMENT = 'production'
-        
+        define('BASE_URL', 'https://api-batponto.encautech.com/');
+        $config['dbname'] = 'encaute2_access_controll';
+        $config['host'] = 'localhost';
+        $config['dbuser'] = 'encaute2_manager';
+        $config['dbpass'] = 'QA==m&ZQ+HR;';
     }
 
     global $db;

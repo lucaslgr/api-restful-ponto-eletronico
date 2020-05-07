@@ -1,5 +1,5 @@
 <?php
-    use Core\Core;
+    use \Core\Core;
 
     session_start();
 
@@ -8,9 +8,9 @@
     //Liberando todos os métodos de requisição
     header("Access-Control-Allow-Methods: *");
 
-    require 'config.php';
-    require 'routes.php';
-    require 'vendor/autoload.php';
+    require '../config.php';
+    require '../routes.php';
+    require '../vendor/autoload.php';
 
     $c = new Core();
     $c->run();
