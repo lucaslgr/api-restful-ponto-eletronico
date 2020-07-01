@@ -2,7 +2,7 @@
 
 # PROJETO - BATPONTO[EM DESENVOLVIMENTO]
 
-### :rocket: Tecnologias utilizadas
+## :rocket: Tecnologias utilizadas
 
 <li>PHP 7.4</li>
 
