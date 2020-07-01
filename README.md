@@ -22,9 +22,9 @@
 
 - Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 
-<li>[Git](https://git-scm.com)</li>
-<li>[Apache](https://www.apachefriends.org/pt_br/index.html)</li>
-<li>[MySQL](https://www.apachefriends.org/pt_br/index.html)</li>
+<li>![Git](https://git-scm.com)</li>
+<li>![Apache](https://www.apachefriends.org/pt_br/index.html)</li>
+<li>![MySQL](https://www.apachefriends.org/pt_br/index.html)</li>
 <li>Caso não tenha, instle um editor, eu indico o <b>[VSCode](https://code.visualstudio.com/)</li>
 
 ### Instalando e rodando:
