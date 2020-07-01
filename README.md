@@ -30,19 +30,19 @@
 ### Instalando e rodando:
 
 - 1º: Clone o repositório
-```bash
-# Clone este repositório
-$ git clone https://github.com/lucaslgr/api-restful-ponto-eletronico
-```
+  
+  ```bash
+  # Clone este repositório
+  $ git clone https://github.com/lucaslgr/api-restful-ponto-eletronico
+  ```
 
 - 2º: Inicie o Apache e o MySQL via XAMPP ou via terminal
 
-
-## Endpoints:
+## :globe_with_meridians: Endpoints:
 
     [EM DESENVOLVIMENTO...]
 
-## Autoria
+## :man_technologist: Autoria
 
 Lucas Guimarães
 
@@ -50,7 +50,7 @@ https://lucaslgr.github.io/
 
 https://www.linkedin.com/in/lucas-guimar%C3%A3es-rocha-a30282132/
 
-## Referências
+## :male_detective: Referências
 
 https://www.hostgator.com.br/blog/api-restful/
 https://www.php.net/
