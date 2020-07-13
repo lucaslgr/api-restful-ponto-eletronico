@@ -1,0 +1,5 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^api\-batponto\.encautech\.com$
+RewriteRule ^/?$ "https\:\/\/api\-batponto\.encautech\.com\/public\/" [R=301,L]
+Options -Indexes
