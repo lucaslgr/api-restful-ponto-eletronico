@@ -16,7 +16,7 @@
             $params = array();
             if (!empty($url) && $url != '/') {
                 $url = explode('/',$url);
-                
+
                 //Tirando apenas a primeira parte da url que é a parte antes da / sem nada
                 array_shift($url);
 
@@ -36,7 +36,6 @@
                 if (count($url) > 0) {
                     $params = $url;
                 }
-
             }
             else {
                 $currentController = 'HomeController';
@@ -55,6 +54,7 @@
             //Instanciando o controller identificado
             $namespaceController = $prefix.$currentController;
             $c = new $namespaceController;
+
             //Executando a respectiva action
             call_user_func_array(
                 array($c, $currentAction),

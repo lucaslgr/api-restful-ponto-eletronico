@@ -91,7 +91,7 @@ class MembersController extends Controller
         );
 
         $method = $this->getMethod();
-        $data = $this->getRequestData();
+        // $data = $this->getRequestData();
 
         if ($method == 'GET') {
             //Verificando se as informações foram enviadas
@@ -99,9 +99,9 @@ class MembersController extends Controller
             $members = new Members();
 
             $response['membros'] = $members->getMembers();
-        } else
+        } else {
             $response['error'] = 'Método '.$method.' é inválido para essa requisição';
-
+        }
         $this->returnJson($response);
     }
 

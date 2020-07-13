@@ -23,8 +23,8 @@ $routes = array();
 //Cofiguração das rotas
 $routes['/members/new']     = '/members/create';        //OK
 $routes['/members/login']   = '/members/login';         //OK
-$routes['/members']         = '/members/get_all';       //OK
 $routes['/members/{id}']    = '/members/view/:id';      //GET OK//PUT OK//DEL OK
+$routes['/members']         = '/members/get_all';       //OK
 
 $routes['/access/{uid}/new']= '/node/new_access/:uid';             // OK [PARCIALMENTE, falta filtrar O ip do NODE]
 // $routes['/access/new']      = '/node/new_access';             // OK [PARCIALMENTE, falta filtrar O ip do NODE]

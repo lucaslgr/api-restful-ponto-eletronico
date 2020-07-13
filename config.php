@@ -2,7 +2,7 @@
     require 'environment.php';
 
     if (ENVIRONMENT == 'development') {
-        define('BASE_URL', 'http://localhost/project-ponto-eletronico/');
+        define('BASE_URL', 'http://localhost/project-ponto-eletronico/public/');
         $config['dbname'] = 'batponto'; //Usei essa tabela para exemplo
         $config['host'] = '127.0.0.1'; //ou 'localhost'
         $config['dbuser'] = 'root';

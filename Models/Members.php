@@ -157,7 +157,6 @@ class Members extends Model
 
             $sql = $this->pdo->prepare($sql);
             $sql->execute();
-            $response = $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
 
         if ($sql->rowCount() > 0) {
