@@ -4,6 +4,7 @@ namespace Controllers;
 
 use \Core\Controller;
 use \Models\Members;
+use \Models\Params;
 
 class MembersController extends Controller
 {
@@ -18,6 +19,18 @@ class MembersController extends Controller
         $method = $this->getMethod();
         $data = $this->getRequestData();
 
+        //Verbo GET retorna todas informacoes necessarios para construir o formulario
+        if ($method == 'GET'){
+            $params = new Params();
+
+            $response['departamentos'] = $params->getAllDepartments();
+            $response['cargos'] = $params->getAllPositions();
+
+            $this->returnJson($response);
+            exit;
+        }
+
+        //Verbo POST recebe os dados form
         if ($method == 'POST'){
 
             //Verificando se as informações foram enviadas
@@ -49,6 +62,7 @@ class MembersController extends Controller
             $response['error'] = 'Método '.$method.' é inválido para essa requisição';
 
         $this->returnJson($response);
+        exit;
     }
 
     //ACTION: logar um membro
@@ -124,6 +138,7 @@ class MembersController extends Controller
         if (!empty($id_member)) {
 
             $members = new Members();
+            $params = new Params();
 
             switch($method){
                 case 'GET':
@@ -133,6 +148,8 @@ class MembersController extends Controller
                     //     )
                     // );
                     $response['data'] = $members->getInfo($id_member);
+                    $response['params']['cargos'] = $params->getAllPositions();
+                    $response['params']['departamentos'] = $params->getAllDepartments();
                     break;
                     
                 case 'PUT':

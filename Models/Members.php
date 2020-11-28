@@ -90,7 +90,7 @@ class Members extends Model
     {
         $response = array();
         $sql = $this->pdo->prepare(
-            "SELECT membros.id, membros.nome, membros.email, cargos.nome AS cargo, departamentos.nome AS departamento 
+            "SELECT membros.id, membros.nome, membros.email, cargos.nome AS cargo, cargos.id AS cargo_id, departamentos.nome AS departamento, departamentos.id AS departamento_id
             FROM membros
             INNER JOIN cargos ON membros.id_cargo = cargos.id
             INNER JOIN departamentos ON membros.id_departamento = departamentos.id
