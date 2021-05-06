@@ -82,8 +82,13 @@ class MembersController extends Controller
                 !empty($data['senha'])
             ) {
                 $members = new Members();
+                $params = new Params();
 
                 if ($members->checkCredentials($data['email'], $data['senha'])) {
+                    $response['data'] = $members->getInfo($members->getIdLoggedUser());
+                    $response['parametros']['cargos'] = $params->getAllPositions();
+                    $response['parametros']['departamentos'] = $params->getAllDepartments();
+
                     $response['error'] = 'login com sucesso';
                 } else {
                     $response['error'] = 'Senha e/ou email incorretos';
@@ -148,8 +153,8 @@ class MembersController extends Controller
                     //     )
                     // );
                     $response['data'] = $members->getInfo($id_member);
-                    $response['params']['cargos'] = $params->getAllPositions();
-                    $response['params']['departamentos'] = $params->getAllDepartments();
+                    $response['parametros']['cargos'] = $params->getAllPositions();
+                    $response['parametros']['departamentos'] = $params->getAllDepartments();
                     break;
                     
                 case 'PUT':

@@ -138,8 +138,8 @@ class Members extends Model
             $sql = (
                 "SELECT membros.id, membros.nome, membros.email, cargos.nome AS cargo, departamentos.nome AS departamento
                 FROM membros
-                INNER JOIN cargos ON membros.id_cargo = cargos.id
-                INNER JOIN departamentos ON membros.id_departamento = departamentos.id
+                LEFT JOIN cargos ON membros.id_cargo = cargos.id
+                LEFT JOIN departamentos ON membros.id_departamento = departamentos.id
                 WHERE ".implode(', ',$fields)
             );
 
@@ -150,8 +150,8 @@ class Members extends Model
             $sql = (
                 "SELECT membros.id, membros.nome, membros.email, cargos.nome AS cargo, departamentos.nome AS departamento 
                 FROM membros
-                INNER JOIN cargos ON membros.id_cargo = cargos.id
-                INNER JOIN departamentos ON membros.id_departamento = departamentos.id
+                LEFT JOIN cargos ON membros.id_cargo = cargos.id
+                LEFT JOIN departamentos ON membros.id_departamento = departamentos.id
                 WHERE 1=1"
             );
 
@@ -211,5 +211,10 @@ class Members extends Model
         ));
 
         return ($status_query)?(''):('Ocorreu um erro na query');
+    }
+
+    public function getIdLoggedUser()
+    {
+        return $this->id_user;
     }
 } 
